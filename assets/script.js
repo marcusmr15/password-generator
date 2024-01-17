@@ -1,59 +1,80 @@
-// Assignment code here
-
-var button = document.getElementById("generate");
-
-var defaultLength = 16;
-var upperCase = true;
-var lowerCase = true;
-var numbers = true;
-var symbols = true;
-
-
- // Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword(length, upperCase, lowerCase, numbers, symbols) {
-
+function generatePassword(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
+  var lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+  var uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var numberChars = '0123456789';
+  var symbolChars = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
   
-  //var password = generatePassword();
-  //var passwordText = document.querySelector("#password");
-
-  //passwordText.value = password;
-
+  var allowedChars = '';
+  
+  if (includeLowercase) {
+    allowedChars += lowercaseChars;
+  }
+  
+  if (includeUppercase) {
+    allowedChars += uppercaseChars;
+  }
+  
+  if (includeNumbers) {
+    allowedChars += numberChars;
+  }
+  
+  if (includeSymbols) {
+    allowedChars += symbolChars;
+  }
+  
+  var password = '';
+  
+  for (var i = 0; i < length; i++) {
+    var randomIndex = Math.floor(Math.random() * allowedChars.length);
+    password += allowedChars[randomIndex];
+  }
+  
+  return password;
 }
 
-writePassword(defaultLength, upperCase, lowerCase, numbers, symbols);
+var passwordAll = generatePassword(16, true, true, true, true);
+console.log(passwordAll);
+var passwordNoLowercase = generatePassword(16, false, true, true, true);
+console.log(passwordNoLowercase);
+var passwordNoUppercase = generatePassword(16, true, false, true, true);
+console.log(passwordNoUppercase);
+var passwordNoNumbers = generatePassword(16, true, true, false, true);
+console.log(passwordNoNumbers);
+var passwordNoSymbols = generatePassword(16, true, true, true, false);
+console.log(passwordNoSymbols);
 
 
-// Add event listener to generate button
-//generateBtn.addEventListener("click", writePassword);
+var generateBtn = document.querySelector('#generate');
 
+generateBtn.addEventListener("click", function () {
+  var userInput;
+  var passwordText = document.getElementById('password');
+  console.log(password);
+      
+  while (true) {
+    var userInput = prompt("Hello!\nType either '1', '2' '3' '4' or '5', then the 'OK' button:\n\n- Type 1 if you need to exclude lowercases\n- Type 2 if you need to exclude uppercase\n- Type 3 if you need to exclude numbers\n- Type 4 if you need to exclude symbols\n- Type 5 to generate a random strong password.");
 
-button.addEventListener("click", function() {
-    var userInput;
-
-    while (true) {
-      var userInput = prompt("Please type a number to generate a password!\n\n- Type '1' if you need to set specific criteria to be included in the password (special characters, lowercase/uppercase, etc.)\n\n- Type '2' to generate a random strong password");
-
-      if (userInput === null) {
-        console.log("No message inputted.");
-        break;
-      } else if (userInput === '') {
-        alert("You need to type something... 😅");
-      } else if (userInput === '1') {
-        
-        
-
-      } else if (userInput === '2') {
-        console.log("Your secure password is: ");
-        alert("2!!!!");
-        break;
-      } else if (userInput !== '1' || userInput !== '2') {
-        alert("Please type your response with only a 1 or a 2.\nAnd neither spaces nor single quotes(').");
-      }
-    }
+    if (userInput === null) {
+      break;
+    } else if (userInput === '') {
+      alert("You need to type something... 😅"); 
+    } else if (userInput === '1') {
+      passwordText.value = passwordNoLowercase 
+      break;     
+    } else if (userInput === '2') {
+      passwordText.value = passwordNoUppercase 
+      break;     
+    }else if (userInput === '3') {
+       passwordText.value = passwordNoNumbers
+    break;
+    } else if (userInput === '4') {
+       passwordText.value = passwordNoSymbols 
+      break;     
+   } else if (userInput === '5') {
+     passwordText.value = passwordAll
+     break;     
+      } else if (userInput !== '1' || userInput !== '2' || userInput !== '3' || userInput !== '4' || userInput !== '5' || userInput !== '5') {
+        alert("Please type either the numbers 1 or 2\n*Do not include spaces nor single quotes(').");
+      } 
+  }
 });
-
-
-
