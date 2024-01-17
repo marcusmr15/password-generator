@@ -14,7 +14,7 @@ N/A
 
 By clicking the red ‘Generate Password’ button, the user can either create a random strong password or one with specific criteria set by the user through responses in prompt messages. Here is an image of the website to better illustrate its design and functionality.
 
-![Screenshot of the deployed webpage: "Password Generator"](./assets/images/website-preview.png)
+![Screenshot of the deployed webpage: "Password Generator"](./assets/images/website-preview-1.png)
 
 ## Credits
 
