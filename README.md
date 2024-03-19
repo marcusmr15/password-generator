@@ -18,7 +18,10 @@ By clicking the red ‘Generate Password’ button, the user can either create a
 
 ## Credits
 
-N/A.
+This webpage was created with the help of:
+* The starter code from the repo “friendly-parakeet” by [Xander Rapstine](https://github.com/Xandromus).
+* The ‘Xpert Learning Assistant’ Artificial Intelligence by edX.
+
 
 ## License
 
